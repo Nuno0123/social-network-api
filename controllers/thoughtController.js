@@ -1,12 +1,14 @@
 const { User, Thought } = require("../models")
 
+// thoughts
 const thoughtController = {
+  // get
   getThought(req, res) {
     Thought.find({})
       .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
-
+  // create
   createThought(req, res) {
     Thought.create(req.body)
       .then(({ _id }) => {
@@ -23,7 +25,7 @@ const thoughtController = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  
+  //update 
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -37,7 +39,7 @@ const thoughtController = {
       )
       .catch((err) => res.status(500).json(err));
   },
-
+  //delete
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
